@@ -33,6 +33,15 @@ public class SummonsBase : MonoBehaviour
 
     public GameObject _effectDie = null;
 
+    void Start()
+    {
+        // wait mode
+        _summonState = SummonState.Idle;
+
+        // cashing
+        _summonTransform = GetComponent<Transform>();
+    }
+
     void CkState()
     {
         switch(_summonState)
@@ -136,11 +145,28 @@ public class SummonsBase : MonoBehaviour
 
     void SetAtk()
     {
-
+        float distance = Vector3.Distance(_targetTransform.position, _summonTransform.position);
+        if (distance > _atkRange + 0.5f)
+        {
+            _summonState = SummonState.GoTarget;
+        }
     }
 
     IEnumerator SetWait()
     {
-        yield return new WaitForSeconds(1f);
+        _summonState = SummonState.Wait;
+        // 대기하는 시간
+        float timeWait = Random.Range(1.0f, 3.0f);
+        // 대기 시간을 넣어줘야함
+        yield return new WaitForSeconds(timeWait);
+        // 대기한 다음 준비상태로
+        _summonState = SummonState.Idle;
     }
-}
+
+    
+    void MoveAround()
+    {
+        
+
+    }
+}   
