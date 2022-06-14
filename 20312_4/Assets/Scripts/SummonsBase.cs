@@ -32,6 +32,8 @@ public class SummonsBase : MonoBehaviour
     public GameObject _effectDamage = null;
 
     public GameObject _effectDie = null;
+    Tweener effectTweener;
+    private SkinnedMeshRenderer skinnedMeshRenderer = null;
 
     void Start()
     {
@@ -163,7 +165,18 @@ public class SummonsBase : MonoBehaviour
         _summonState = SummonState.Idle;
     }
 
-    
+    void effectDamageTween()
+    {
+        if (effectTweener != null && effectTweener.IsComplete() == false)
+        {
+            return;
+        }
+        Color colorTo = Color.red;
+
+        //effectTweener = DOTween.To(skinnedMeshRenderer, 0.2f, new TweenParams.Prop (
+        //    "color", colorTo).Loops(1, LoopType.Yoyo).OnStepComplete(OnDamageTweenFinished));
+    }
+
     void MoveAround()
     {
         
