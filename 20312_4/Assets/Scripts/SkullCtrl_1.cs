@@ -61,6 +61,8 @@ public class SkullCtrl_1 : MonoBehaviour
     Tweener effectTweener;
     private SkinnedMeshRenderer skinnedMeshRenderer = null;
 
+    public GameObject Gem;
+
     // Functions Called When Attack Animation Ends
     void OnAtkAnimationFinished()
     {
@@ -336,7 +338,8 @@ public class SkullCtrl_1 : MonoBehaviour
 
     void OnDamageTweenFinished()
     {
-
+        
+        
     }
 
     /// <summary>
@@ -362,6 +365,6 @@ public class SkullCtrl_1 : MonoBehaviour
 
     void CreateItem()
     {
-
+        Instantiate(Gem);
     }
 }

@@ -179,7 +179,9 @@ public class SummonsBase : MonoBehaviour
 
     void MoveAround()
     {
+        float distance = Vector3.Distance(_playerTransform.position, transform.position);
         
+
 
     }
 }   
