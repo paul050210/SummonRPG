@@ -16,16 +16,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float gravity;
 
+    [SerializeField] private float jumpHeight;
+
     private CharacterController controller;
+    private Animator anim;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         Move();
+
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
     }
 
     private void Move()
@@ -40,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         moveDirection = new Vector3(0, 0, moveZ);
+        moveDirection = transform.TransformDirection(moveDirection);
 
         if(isGrounded)
         {
@@ -57,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
             moveDirection *= moveSpeed;
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
         }
 
         controller.Move(moveDirection * Time.deltaTime);
@@ -67,18 +82,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Idle()
     {
-
+        anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
     }
 
     private void Walk()
     {
         moveSpeed = walkSpeed;
+        anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
     }
 
     private void Run()
     {
         moveSpeed = runSpeed;
+        anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
     }
 
 
+    private void Attack()
+    {
+        anim.SetTrigger("Attack");
+
+    }
 }
