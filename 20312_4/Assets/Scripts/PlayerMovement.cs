@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Attack();
+            StartCoroutine(Attack());
         }
     }
 
@@ -103,9 +103,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void Attack()
+    private IEnumerator Attack()
     {
+        anim.SetLayerWeight(anim.GetLayerIndex("Atack Layer"), 1);
         anim.SetTrigger("Attack");
 
+        yield return new WaitForSeconds(0.9f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Atack Layer"), 0);
     }
 }
