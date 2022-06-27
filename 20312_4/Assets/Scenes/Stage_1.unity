@@ -1038,7 +1038,7 @@ GameObject:
   - component: {fileID: 1808561823}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  walkSpeed: 5
+  walkSpeed: 4
   runSpeed: 7
   isGrounded: 0
   groundCheckDistance: 0.2

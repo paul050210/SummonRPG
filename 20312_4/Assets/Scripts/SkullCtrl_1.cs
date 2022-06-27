@@ -353,18 +353,11 @@ public class SkullCtrl_1 : MonoBehaviour
             _skullState = SkullState.GoTarget;
         }
     }
-
-    void SetDie()
-    {
-        int n = Random.Range(1, 100);
-        if(n <= 10)
-        {
-            CreateItem();
-        }
-    }
-
-    void CreateItem()
+    
+    void SetDie(string a)
     {
         Instantiate(Gem);
+
+        
     }
 }

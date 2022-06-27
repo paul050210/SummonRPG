@@ -102,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
     }
 
-
     private IEnumerator Attack()
     {
         anim.SetLayerWeight(anim.GetLayerIndex("Atack Layer"), 1);
@@ -111,4 +110,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.9f);
         anim.SetLayerWeight(anim.GetLayerIndex("Atack Layer"), 0);
     }
+
+
 }
